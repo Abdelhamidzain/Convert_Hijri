@@ -4,65 +4,65 @@
 
 @layer base {
   :root {
-    /* Islamic-inspired emerald and warm tones - HIGH CONTRAST */
-    --background: 45 25% 98%;
-    --foreground: 160 35% 8%;
+    /* Islamic-inspired emerald and warm tones - MAXIMUM CONTRAST */
+    --background: 40 20% 99%;
+    --foreground: 160 50% 5%;
 
-    --card: 45 30% 100%;
-    --card-foreground: 160 35% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 160 50% 5%;
 
-    --popover: 45 30% 100%;
-    --popover-foreground: 160 35% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 50% 5%;
 
-    --primary: 158 55% 22%;
+    --primary: 158 65% 18%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 30% 90%;
-    --secondary-foreground: 160 35% 12%;
+    --secondary: 45 25% 92%;
+    --secondary-foreground: 160 50% 8%;
 
-    --muted: 45 20% 92%;
-    --muted-foreground: 160 25% 25%;
+    --muted: 45 15% 94%;
+    --muted-foreground: 160 40% 18%;
 
-    --accent: 35 75% 45%;
+    --accent: 35 85% 40%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 80% 45%;
+    --destructive: 0 85% 40%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 160 25% 78%;
-    --input: 160 20% 82%;
-    --ring: 158 55% 28%;
+    --border: 160 30% 72%;
+    --input: 160 25% 78%;
+    --ring: 158 65% 22%;
 
     --radius: 0.75rem;
 
     /* Custom Islamic pattern colors */
-    --emerald-glow: 158 60% 35%;
-    --gold-accent: 42 85% 48%;
-    --cream-light: 45 40% 97%;
-    --ink-dark: 160 40% 6%;
+    --emerald-glow: 158 70% 30%;
+    --gold-accent: 42 90% 42%;
+    --cream-light: 40 30% 98%;
+    --ink-dark: 160 50% 4%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(158 55% 26%), hsl(158 60% 16%));
-    --gradient-card: linear-gradient(180deg, hsl(45 40% 100%), hsl(45 30% 97%));
-    --gradient-accent: linear-gradient(135deg, hsl(42 85% 48%), hsl(35 80% 42%));
+    --gradient-primary: linear-gradient(135deg, hsl(158 65% 22%), hsl(158 70% 12%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(40 20% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(42 90% 42%), hsl(35 85% 36%));
 
     /* Shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(160 40% 15% / 0.12);
-    --shadow-card: 0 8px 32px -8px hsl(160 40% 15% / 0.16);
-    --shadow-elevated: 0 16px 48px -12px hsl(160 40% 15% / 0.20);
+    --shadow-soft: 0 4px 20px -4px hsl(160 50% 10% / 0.15);
+    --shadow-card: 0 8px 32px -8px hsl(160 50% 10% / 0.20);
+    --shadow-elevated: 0 16px 48px -12px hsl(160 50% 10% / 0.25);
 
     /* Typography */
     --font-arabic: 'Noto Kufi Arabic', 'Amiri', system-ui, sans-serif;
     --font-display: 'Amiri', serif;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 10% 20%;
-    --sidebar-primary: 240 10% 6%;
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 240 15% 15%;
+    --sidebar-primary: 240 15% 4%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 8% 94%;
-    --sidebar-accent-foreground: 240 10% 6%;
-    --sidebar-border: 220 18% 88%;
-    --sidebar-ring: 217 95% 55%;
+    --sidebar-accent: 240 10% 95%;
+    --sidebar-accent-foreground: 240 15% 4%;
+    --sidebar-border: 220 20% 85%;
+    --sidebar-ring: 217 100% 50%;
   }
 
   .dark {
