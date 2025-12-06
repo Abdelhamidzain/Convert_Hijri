@@ -104,14 +104,17 @@ const DateConverter = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      {/* Today's Date Display */}
-      <div className="mb-8 p-4 rounded-xl bg-secondary/50 border border-border/50 text-center">
-        <p className="text-sm text-muted-foreground mb-1">تاريخ اليوم</p>
-        <p className="text-lg font-semibold text-foreground">
+      {/* Today's Date Display - High Volume Keywords */}
+      <div className="mb-8 p-5 rounded-xl bg-secondary/50 border border-border/50 text-center">
+        <h2 className="text-sm font-medium text-muted-foreground mb-2">تاريخ اليوم هجري وميلادي</h2>
+        <p className="text-xl font-bold text-foreground">
           {formatHijriDate(todayHijri)}
         </p>
-        <p className="text-sm text-muted-foreground mt-1">
-          {formatGregorianDate(todayGregorian)}
+        <p className="text-sm text-muted-foreground mt-2">
+          التاريخ الميلادي: {formatGregorianDate(todayGregorian)}
+        </p>
+        <p className="text-xs text-primary mt-2">
+          التقويم الهجري {todayHijri.year} | شهر {todayHijri.month} هجري
         </p>
       </div>
 
