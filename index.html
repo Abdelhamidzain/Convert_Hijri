@@ -6,8 +6,15 @@
     <meta name="theme-color" content="#1a6b4a" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="google-site-verification" content="6MY75cSkh5b9aYM0uwczr4Y_r0fwcGmcMzWp7gcsXMo" />
-    <!-- DNS Prefetch for faster font loading -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Load Google Fonts properly via API (non-blocking) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" />
+    </noscript>
     
     <title>تاريخ اليوم هجري | تحويل التاريخ الهجري - التقويم الهجري 1446</title>
     <meta name="description" content="تاريخ اليوم هجري وميلادي - أداة تحويل التاريخ من هجري لميلادي والعكس. اعرف كم التاريخ الهجري اليوم بدقة. التقويم الهجري 1446 - محول التاريخ الأسرع والأدق." />
@@ -30,24 +37,6 @@
 
     <!-- Critical CSS inlined for faster FCP/LCP -->
     <style>
-      /* Font faces with swap */
-      @font-face {
-        font-family: 'Noto Kufi Arabic';
-        font-style: normal;
-        font-weight: 400 700;
-        font-display: swap;
-        src: local('Noto Kufi Arabic'), url('https://fonts.gstatic.com/s/notokufiarabic/v23/CSRp4ydQnPyaDxEXLFF6LZVLKrodhu8t57o1kDc5Wh5v.woff2') format('woff2');
-        unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
-      }
-      @font-face {
-        font-family: 'Amiri';
-        font-style: normal;
-        font-weight: 400 700;
-        font-display: swap;
-        src: local('Amiri'), url('https://fonts.gstatic.com/s/amiri/v27/J7aRnpd8CGxBHpUrtLMA7w.woff2') format('woff2');
-        unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FEFF;
-      }
-      
       /* Critical above-the-fold styles */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { font-family: 'Noto Kufi Arabic', 'Amiri', system-ui, sans-serif; }
