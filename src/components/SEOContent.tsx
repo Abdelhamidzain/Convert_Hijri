@@ -1,8 +1,20 @@
-import { Moon, CheckCircle2, Zap, Globe, Shield, Clock } from 'lucide-react';
+import { Moon, CheckCircle2, Zap, Globe, Shield, Clock, Calendar, Star, BookOpen } from 'lucide-react';
 
 const SEOContent = () => {
   return (
     <section className="mt-16 space-y-12">
+      {/* Quick Answer Box - High Volume Keywords */}
+      <article className="bg-primary/5 rounded-2xl p-6 md:p-8 border-2 border-primary/20">
+        <h2 className="text-2xl font-display font-bold text-foreground mb-4 flex items-center gap-2">
+          <Star className="w-6 h-6 text-primary" />
+          كم التاريخ الهجري اليوم؟
+        </h2>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          استخدم أداتنا أعلاه لمعرفة <strong>تاريخ اليوم هجري</strong> و<strong>تاريخ اليوم ميلادي</strong> بدقة. 
+          نوفر لك أسرع طريقة لـ<strong>تحويل التاريخ من هجري لميلادي</strong> أو <strong>تحويل التاريخ من ميلادي إلى هجري</strong>.
+        </p>
+      </article>
+
       {/* What is Hijri Calendar */}
       <article className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border/30">
         <div className="flex items-center gap-3 mb-4">
@@ -15,45 +27,79 @@ const SEOContent = () => {
         </div>
         <div className="prose prose-lg text-muted-foreground leading-relaxed space-y-4">
           <p>
-            التقويم الهجري هو التقويم الإسلامي الذي يعتمد على دورة القمر، ويُستخدم لتحديد المناسبات الدينية الإسلامية المهمة. 
-            بدأ هذا التقويم من هجرة النبي محمد ﷺ من مكة إلى المدينة المنورة عام 622 ميلادي.
+            <strong>التقويم الهجري</strong> (أو التقويم الإسلامي) هو التقويم القمري الذي يعتمده المسلمون لتحديد المناسبات الدينية. 
+            يُعرف أيضاً باسم <strong>التاريخ الهجري</strong> نسبة لهجرة النبي محمد ﷺ من مكة إلى المدينة المنورة عام 622 ميلادي.
           </p>
           <p>
-            يتكون العام الهجري من 12 شهراً قمرياً، ويبلغ عدد أيامه 354 أو 355 يوماً، مما يجعله أقصر من العام الميلادي بحوالي 11 يوماً. 
-            تُحدد بداية كل شهر هجري برؤية الهلال الجديد.
+            يتكون العام الهجري من 12 شهراً قمرياً، ويبلغ عدد أيامه 354 أو 355 يوماً. لذلك يختلف <strong>التاريخ الهجري مقابل الميلادي</strong> كل عام، 
+            مما يجعل أداة <strong>تحويل التاريخ الهجري</strong> ضرورية لمعرفة التواريخ المهمة.
           </p>
           <p>
-            يُستخدم التقويم الهجري في تحديد أوقات العبادات والمناسبات الدينية مثل:
+            يُستخدم <strong>التقويم الهجري 1446</strong> حالياً، ونحن نستعد للانتقال إلى <strong>التقويم الهجري 1447</strong>. 
+            تساعدك أداتنا في معرفة <strong>شهر كم هجري</strong> اليوم و<strong>شهر كم ميلادي</strong>.
           </p>
+          <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">المناسبات الدينية المرتبطة بالتقويم الهجري:</h3>
           <ul className="list-none space-y-2 mt-4">
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-              <span>شهر رمضان المبارك وموعد الصيام</span>
+              <span><strong>شهر رمضان</strong> - شهر الصيام المبارك (الشهر التاسع هجري)</span>
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-              <span>عيد الفطر وعيد الأضحى المبارك</span>
+              <span><strong>عيد الفطر</strong> - أول أيام شهر شوال</span>
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-              <span>موسم الحج في شهر ذي الحجة</span>
+              <span><strong>موسم الحج</strong> - في شهر ذي الحجة</span>
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-              <span>ذكرى المولد النبوي الشريف</span>
+              <span><strong>عيد الأضحى</strong> - العاشر من ذي الحجة</span>
             </li>
             <li className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-              <span>يوم عاشوراء في شهر محرم</span>
+              <span><strong>المولد النبوي</strong> - 12 ربيع الأول</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+              <span><strong>يوم عاشوراء</strong> - 10 محرم</span>
             </li>
           </ul>
+        </div>
+      </article>
+
+      {/* Conversion Guide */}
+      <article className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border/30">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="p-2 rounded-lg bg-primary/10">
+            <BookOpen className="w-6 h-6 text-primary" />
+          </div>
+          <h2 className="text-2xl font-display font-bold text-foreground">
+            كيفية تحويل التاريخ من هجري إلى ميلادي
+          </h2>
+        </div>
+        <div className="prose prose-lg text-muted-foreground leading-relaxed space-y-4">
+          <p>
+            <strong>تحويل من هجري لميلادي</strong> أصبح سهلاً مع أداتنا المجانية. سواء كنت تريد <strong>تحويل تاريخ هجري إلى ميلادي</strong> 
+            أو العكس (<strong>تحويل من ميلادي إلى هجري</strong>)، نوفر لك نتائج دقيقة وفورية.
+          </p>
+          <h3 className="text-lg font-semibold text-foreground mt-4">خطوات تحويل التاريخ:</h3>
+          <ol className="list-decimal list-inside space-y-2 mr-4">
+            <li>اختر نوع التحويل: <strong>ميلادي إلى هجري</strong> أو <strong>هجري إلى ميلادي</strong></li>
+            <li>أدخل التاريخ المراد تحويله (اليوم، الشهر، السنة)</li>
+            <li>اضغط على زر "تحويل" للحصول على النتيجة فوراً</li>
+            <li>سيظهر لك <strong>التاريخ الهجري</strong> أو <strong>التاريخ الميلادي</strong> المقابل</li>
+          </ol>
+          <p className="mt-4">
+            أداتنا تدعم <strong>تحويل العمر من هجري الى ميلادي</strong> أيضاً، وهي مفيدة لمعرفة تاريخ ميلادك بالتقويمين.
+          </p>
         </div>
       </article>
 
       {/* Features Section */}
       <article className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border/30">
         <h2 className="text-2xl font-display font-bold text-foreground mb-6">
-          مميزات أداة تحويل التاريخ الهجري
+          مميزات محول التاريخ الهجري
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="flex gap-4">
@@ -61,9 +107,9 @@ const SEOContent = () => {
               <Zap className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">سرعة فائقة</h3>
+              <h3 className="font-semibold text-foreground mb-1">تحويل فوري وسريع</h3>
               <p className="text-muted-foreground">
-                تحويل فوري للتاريخ بدون أي تأخير أو انتظار للتحميل
+                <strong>تحويل التاريخ</strong> بضغطة زر واحدة بدون انتظار أو تحميل
               </p>
             </div>
           </div>
@@ -73,9 +119,9 @@ const SEOContent = () => {
               <Shield className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">دقة عالية</h3>
+              <h3 className="font-semibold text-foreground mb-1">دقة عالية (تقويم أم القرى)</h3>
               <p className="text-muted-foreground">
-                نستخدم خوارزميات موثوقة لضمان دقة التحويل
+                نستخدم خوارزمية <strong>التقويم الهجري</strong> المعتمدة في السعودية
               </p>
             </div>
           </div>
@@ -87,7 +133,7 @@ const SEOContent = () => {
             <div>
               <h3 className="font-semibold text-foreground mb-1">يعمل بدون إنترنت</h3>
               <p className="text-muted-foreground">
-                بعد التحميل الأول، يعمل التطبيق بالكامل على جهازك
+                بعد التحميل الأول، تعمل أداة <strong>تحويل هجري ميلادي</strong> على جهازك
               </p>
             </div>
           </div>
@@ -99,7 +145,7 @@ const SEOContent = () => {
             <div>
               <h3 className="font-semibold text-foreground mb-1">تحويل ثنائي الاتجاه</h3>
               <p className="text-muted-foreground">
-                حوّل من الميلادي للهجري أو العكس بسهولة
+                <strong>هجري الى ميلادي</strong> أو <strong>ميلادي الى هجري</strong> بسهولة
               </p>
             </div>
           </div>
@@ -108,23 +154,26 @@ const SEOContent = () => {
 
       {/* Hijri Months Reference */}
       <article className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border/30">
-        <h2 className="text-2xl font-display font-bold text-foreground mb-6">
-          أشهر التقويم الهجري
+        <h2 className="text-2xl font-display font-bold text-foreground mb-4">
+          الأشهر الهجرية - التقويم الهجري 1446/1447
         </h2>
+        <p className="text-muted-foreground mb-6">
+          تعرف على <strong>الشهور الهجرية</strong> بالترتيب. معرفة <strong>الشهر الهجري</strong> الحالي مهمة لتتبع المناسبات الإسلامية.
+        </p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {[
-            { num: 1, name: 'محرم' },
-            { num: 2, name: 'صفر' },
-            { num: 3, name: 'ربيع الأول' },
-            { num: 4, name: 'ربيع الآخر' },
-            { num: 5, name: 'جمادى الأولى' },
-            { num: 6, name: 'جمادى الآخرة' },
-            { num: 7, name: 'رجب' },
-            { num: 8, name: 'شعبان' },
-            { num: 9, name: 'رمضان' },
-            { num: 10, name: 'شوال' },
-            { num: 11, name: 'ذو القعدة' },
-            { num: 12, name: 'ذو الحجة' },
+            { num: 1, name: 'محرم', note: 'بداية السنة الهجرية' },
+            { num: 2, name: 'صفر', note: '' },
+            { num: 3, name: 'ربيع الأول', note: 'المولد النبوي' },
+            { num: 4, name: 'ربيع الآخر', note: '' },
+            { num: 5, name: 'جمادى الأولى', note: '' },
+            { num: 6, name: 'جمادى الآخرة', note: '' },
+            { num: 7, name: 'رجب', note: 'الإسراء والمعراج' },
+            { num: 8, name: 'شعبان', note: '' },
+            { num: 9, name: 'رمضان', note: 'شهر الصيام' },
+            { num: 10, name: 'شوال', note: 'عيد الفطر' },
+            { num: 11, name: 'ذو القعدة', note: '' },
+            { num: 12, name: 'ذو الحجة', note: 'الحج وعيد الأضحى' },
           ].map((month) => (
             <div
               key={month.num}
@@ -136,6 +185,11 @@ const SEOContent = () => {
               <span className="block font-semibold text-foreground">
                 {month.name}
               </span>
+              {month.note && (
+                <span className="block text-xs text-primary mt-1">
+                  {month.note}
+                </span>
+              )}
             </div>
           ))}
         </div>
@@ -143,16 +197,49 @@ const SEOContent = () => {
 
       {/* FAQ Section for SEO */}
       <article className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border/30">
-        <h2 className="text-2xl font-display font-bold text-foreground mb-6">
-          أسئلة شائعة
+        <h2 className="text-2xl font-display font-bold text-foreground mb-6 flex items-center gap-2">
+          <Calendar className="w-6 h-6 text-primary" />
+          أسئلة شائعة عن تحويل التاريخ الهجري
         </h2>
         <div className="space-y-6">
           <div>
             <h3 className="font-semibold text-foreground mb-2">
-              كيف أحول التاريخ من ميلادي إلى هجري؟
+              كيف أعرف تاريخ اليوم هجري؟
             </h3>
             <p className="text-muted-foreground">
-              اختر التاريخ الميلادي من الحقل المخصص، ثم اضغط على زر "تحويل" للحصول على التاريخ الهجري المقابل فوراً.
+              يظهر <strong>تاريخ اليوم هجري وميلادي</strong> تلقائياً في أعلى الصفحة. نعرض لك <strong>كم التاريخ الهجري</strong> اليوم بالأرقام واسم اليوم بالعربية.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-foreground mb-2">
+              كيف أحول التاريخ من هجري لميلادي؟
+            </h3>
+            <p className="text-muted-foreground">
+              اختر "هجري ← ميلادي" ثم أدخل <strong>التاريخ الهجري</strong> (اليوم، الشهر، السنة) واضغط تحويل. ستحصل على <strong>التاريخ الميلادي</strong> فوراً.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-foreground mb-2">
+              ما الفرق بين التاريخ الهجري والميلادي؟
+            </h3>
+            <p className="text-muted-foreground">
+              <strong>التقويم الهجري</strong> قمري (354-355 يوم) بينما <strong>التقويم الميلادي</strong> شمسي (365-366 يوم). لذلك <strong>التاريخ الهجري مقابل الميلادي</strong> يتغير كل سنة بفارق حوالي 11 يوماً.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-foreground mb-2">
+              هل يمكنني تحويل تاريخ ميلادي إلى هجري لمعرفة عمري؟
+            </h3>
+            <p className="text-muted-foreground">
+              نعم! استخدم أداة <strong>تحويل التاريخ من ميلادي إلى هجري</strong> لمعرفة تاريخ ميلادك بالتقويم الهجري. يمكنك أيضاً <strong>تحويل العمر من هجري الى ميلادي</strong>.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold text-foreground mb-2">
+              شهر كم هجري الآن؟ وشهر كم ميلادي؟
+            </h3>
+            <p className="text-muted-foreground">
+              نعرض لك <strong>الشهر الهجري</strong> و<strong>الشهر الميلادي</strong> الحالي في أعلى المحول. حالياً نحن في <strong>التقويم الهجري 1446</strong>.
             </p>
           </div>
           <div>
@@ -160,17 +247,31 @@ const SEOContent = () => {
               هل الأداة دقيقة في التحويل؟
             </h3>
             <p className="text-muted-foreground">
-              نعم، نستخدم خوارزمية التقويم الهجري الحسابي المعتمدة والتي توفر دقة عالية في التحويل بين التاريخين.
+              نعم، نستخدم خوارزمية <strong>تقويم أم القرى</strong> المعتمدة في السعودية. <strong>تحويل هجري ميلادي</strong> دقيق جداً وقد يختلف يوم واحد عن رؤية الهلال الفعلية.
             </p>
           </div>
-          <div>
-            <h3 className="font-semibold text-foreground mb-2">
-              هل يمكنني استخدام الأداة بدون اتصال بالإنترنت؟
-            </h3>
-            <p className="text-muted-foreground">
-              نعم، بعد تحميل الصفحة لأول مرة، تعمل الأداة بالكامل على جهازك بدون الحاجة لاتصال بالإنترنت.
-            </p>
-          </div>
+        </div>
+      </article>
+
+      {/* Year Calendars Reference */}
+      <article className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border/30">
+        <h2 className="text-2xl font-display font-bold text-foreground mb-4">
+          التقويم الهجري للسنوات
+        </h2>
+        <p className="text-muted-foreground mb-6">
+          تصفح <strong>التقويم الهجري</strong> للسنوات المختلفة. من <strong>تقويم 1444</strong> إلى <strong>التقويم الهجري 1447</strong>.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {['1444', '1445', '1446', '1447'].map((year) => (
+            <div
+              key={year}
+              className="p-4 rounded-xl bg-primary/5 border border-primary/20 text-center hover:bg-primary/10 transition-colors duration-300"
+            >
+              <span className="block text-sm text-muted-foreground mb-1">التقويم الهجري</span>
+              <span className="block text-2xl font-bold text-primary">{year}</span>
+              <span className="block text-xs text-muted-foreground mt-1">هـ</span>
+            </div>
+          ))}
         </div>
       </article>
     </section>
