@@ -30,7 +30,7 @@ const Index = () => {
           <div className="container max-w-4xl mx-auto text-center">
             {/* Decorative element */}
             <div className="mb-6 flex justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center animate-fade-in" role="img" aria-label="أيقونة الهلال">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center" role="img" aria-label="أيقونة الهلال">
                 <svg 
                   viewBox="0 0 24 24" 
                   className="w-8 h-8 text-primary"
@@ -46,13 +46,13 @@ const Index = () => {
               </div>
             </div>
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4 animate-fade-in">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4">
               تاريخ اليوم هجري - تحويل التاريخ الهجري
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in animation-delay-200">
+            <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto">
               اعرف <strong>كم التاريخ الهجري</strong> اليوم وحوّل بين <strong>التقويم الهجري والميلادي</strong>
               <br />
-              <span className="text-primary">التقويم الهجري 1446 - سريع ودقيق وبدون إعلانات</span>
+              <span className="text-primary font-medium">التقويم الهجري 1446 - سريع ودقيق وبدون إعلانات</span>
             </p>
           </div>
         </header>
@@ -60,7 +60,7 @@ const Index = () => {
         {/* Main Content */}
         <main className="px-4 pb-16">
           <div className="container max-w-4xl mx-auto">
-            <div className="animate-fade-in animation-delay-400">
+            <div>
               <DateConverter />
             </div>
             
