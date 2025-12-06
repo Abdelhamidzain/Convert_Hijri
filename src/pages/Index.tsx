@@ -30,7 +30,7 @@ const Index = () => {
           <div className="container max-w-4xl mx-auto text-center">
             {/* Decorative element */}
             <div className="mb-6 flex justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center animate-fade-in">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center animate-fade-in" role="img" aria-label="أيقونة الهلال">
                 <svg 
                   viewBox="0 0 24 24" 
                   className="w-8 h-8 text-primary"
@@ -39,6 +39,7 @@ const Index = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  aria-hidden="true"
                 >
                   <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
                 </svg>

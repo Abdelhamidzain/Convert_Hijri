@@ -11,7 +11,7 @@ import {
   type HijriDate,
   type GregorianDate
 } from '@/lib/hijriConverter';
-import { Calendar, ArrowLeftRight, Sparkles } from 'lucide-react';
+import { ArrowLeftRight, Sparkles } from 'lucide-react';
 
 type ConversionMode = 'toHijri' | 'toGregorian';
 
@@ -154,7 +154,7 @@ const DateConverter = () => {
         {mode === 'toHijri' ? (
           <div className="space-y-4">
             <label htmlFor="gregorian-date" className="block text-lg font-medium text-foreground mb-2">
-              <Calendar className="inline-block w-5 h-5 ml-2 text-primary" />
+              <span className="inline-block w-5 h-5 ml-2 text-primary" aria-hidden="true">📅</span>
               التاريخ الميلادي
             </label>
             <input
@@ -169,7 +169,7 @@ const DateConverter = () => {
         ) : (
           <div className="space-y-4">
             <label className="block text-lg font-medium text-foreground mb-2">
-              <Calendar className="inline-block w-5 h-5 ml-2 text-primary" />
+              <span className="inline-block w-5 h-5 ml-2 text-primary" aria-hidden="true">🌙</span>
               التاريخ الهجري
             </label>
             <div className="grid grid-cols-3 gap-4">
