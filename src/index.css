@@ -51,9 +51,9 @@
     --shadow-card: 0 8px 32px -8px hsl(160 50% 10% / 0.20);
     --shadow-elevated: 0 16px 48px -12px hsl(160 50% 10% / 0.25);
 
-    /* Typography */
-    --font-arabic: 'Noto Kufi Arabic', 'Amiri', system-ui, sans-serif;
-    --font-display: 'Amiri', serif;
+    /* Typography - System fonts for fast loading */
+    --font-arabic: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Tahoma", "Arial", sans-serif;
+    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Tahoma", "Arial", sans-serif;
 
     --sidebar-background: 0 0% 99%;
     --sidebar-foreground: 240 15% 15%;

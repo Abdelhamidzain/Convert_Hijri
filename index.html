@@ -6,15 +6,6 @@
     <meta name="theme-color" content="#1a6b4a" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="google-site-verification" content="6MY75cSkh5b9aYM0uwczr4Y_r0fwcGmcMzWp7gcsXMo" />
-    <!-- Preconnect for faster font loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Load Google Fonts properly via API (non-blocking) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap" />
-    </noscript>
     
     <title>تاريخ اليوم هجري | تحويل التاريخ الهجري - التقويم الهجري 1446</title>
     <meta name="description" content="تاريخ اليوم هجري وميلادي - أداة تحويل التاريخ من هجري لميلادي والعكس. اعرف كم التاريخ الهجري اليوم بدقة. التقويم الهجري 1446 - محول التاريخ الأسرع والأدق." />
@@ -35,20 +26,131 @@
     
     <link rel="canonical" href="https://hijri-converter.lovable.app/" />
 
-    <!-- Critical CSS inlined for faster FCP/LCP -->
+    <!-- Critical CSS inlined for faster FCP/LCP - covers hero + above-the-fold content -->
     <style>
-      /* Critical above-the-fold styles */
+      /* Reset and base */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { font-family: 'Noto Kufi Arabic', 'Amiri', system-ui, sans-serif; }
-      body { 
-        background-color: hsl(45 25% 98%); 
-        color: hsl(160 35% 8%); 
+      
+      /* System font stack for Arabic - no external fonts needed */
+      html { 
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Tahoma", "Arial", sans-serif;
         -webkit-font-smoothing: antialiased;
-        line-height: 1.5;
+        -moz-osx-font-smoothing: grayscale;
       }
+      
+      body { 
+        background-color: hsl(40 20% 99%);
+        color: hsl(160 50% 5%);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+      
       #root { min-height: 100vh; }
       
-      /* Loading state styles */
+      /* Islamic pattern background */
+      .pattern-islamic {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23198754' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      
+      /* Header styles */
+      .header-critical {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      .container-critical {
+        max-width: 56rem;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      
+      /* Icon container */
+      .icon-box {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1rem;
+        background-color: hsl(158 65% 18% / 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+      
+      .icon-box svg {
+        width: 2rem;
+        height: 2rem;
+        color: hsl(158 65% 18%);
+      }
+      
+      /* Hero title - H1 */
+      .hero-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: hsl(160 50% 5%);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+      
+      @media (min-width: 768px) {
+        .hero-title { font-size: 2.25rem; }
+      }
+      
+      @media (min-width: 1024px) {
+        .hero-title { font-size: 3rem; }
+      }
+      
+      /* Hero paragraph - LCP ELEMENT */
+      .hero-desc {
+        font-size: 1.125rem;
+        color: hsl(160 50% 5% / 0.7);
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
+      }
+      
+      @media (min-width: 768px) {
+        .hero-desc { font-size: 1.25rem; }
+      }
+      
+      .hero-desc strong {
+        font-weight: 600;
+        color: hsl(160 50% 5%);
+      }
+      
+      .hero-highlight {
+        color: hsl(158 65% 18%);
+        font-weight: 500;
+      }
+      
+      /* Today's date box */
+      .today-box {
+        max-width: 42rem;
+        margin: 0 auto 2rem;
+        padding: 1.25rem;
+        border-radius: 0.75rem;
+        background-color: hsl(45 25% 92% / 0.5);
+        border: 1px solid hsl(160 30% 72% / 0.5);
+        text-align: center;
+      }
+      
+      .today-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: hsl(160 40% 18%);
+        margin-bottom: 0.5rem;
+      }
+      
+      .today-date {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: hsl(160 50% 5%);
+      }
+      
+      /* Loading state skeleton */
       .loading-skeleton {
         display: flex;
         flex-direction: column;
@@ -56,45 +158,19 @@
         justify-content: center;
         min-height: 100vh;
         padding: 3rem 1rem;
-        background-color: hsl(45 25% 98%);
+        background-color: hsl(40 20% 99%);
       }
-      .loading-icon {
-        width: 4rem;
-        height: 4rem;
-        border-radius: 1rem;
-        background-color: hsl(158 55% 22% / 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-      }
-      .loading-icon svg {
-        width: 2rem;
-        height: 2rem;
-        color: hsl(158 55% 22%);
-      }
-      .loading-title {
-        font-family: 'Amiri', serif;
-        font-size: 1.875rem;
-        font-weight: 700;
-        color: hsl(160 35% 8%);
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      .loading-subtitle {
-        font-size: 1.125rem;
-        color: hsl(160 35% 8% / 0.7);
-        text-align: center;
-      }
+      
       .loading-spinner {
         width: 2rem;
         height: 2rem;
-        border: 3px solid hsl(158 55% 22% / 0.2);
-        border-top-color: hsl(158 55% 22%);
+        border: 3px solid hsl(158 65% 18% / 0.2);
+        border-top-color: hsl(158 65% 18%);
         border-radius: 50%;
         animation: spin 1s linear infinite;
         margin-top: 2rem;
       }
+      
       @keyframes spin {
         to { transform: rotate(360deg); }
       }
@@ -103,16 +179,32 @@
 
   <body>
     <div id="root">
-      <!-- Loading skeleton shown while JS loads -->
-      <div class="loading-skeleton">
-        <div class="loading-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-          </svg>
-        </div>
-        <h1 class="loading-title">تحويل التاريخ الهجري</h1>
-        <p class="loading-subtitle">جارٍ التحميل...</p>
-        <div class="loading-spinner"></div>
+      <!-- Critical above-the-fold content shown while JS loads -->
+      <div class="min-h-screen pattern-islamic" style="min-height:100vh;">
+        <header class="header-critical">
+          <div class="container-critical">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            </div>
+            <h1 class="hero-title">تاريخ اليوم هجري - تحويل التاريخ الهجري</h1>
+            <p class="hero-desc">
+              اعرف <strong>كم التاريخ الهجري</strong> اليوم وحوّل بين <strong>التقويم الهجري والميلادي</strong>
+              <br />
+              <span class="hero-highlight">التقويم الهجري 1446 - سريع ودقيق وبدون إعلانات</span>
+            </p>
+          </div>
+        </header>
+        <main style="padding:0 1rem 4rem;">
+          <div class="container-critical">
+            <div class="today-box">
+              <p class="today-label">تاريخ اليوم هجري وميلادي</p>
+              <p class="today-date">جارٍ التحميل...</p>
+            </div>
+            <div class="loading-spinner" style="margin:2rem auto;"></div>
+          </div>
+        </main>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
