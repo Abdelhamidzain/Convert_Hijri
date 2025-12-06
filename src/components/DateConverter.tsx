@@ -119,35 +119,37 @@ const DateConverter = () => {
       </div>
 
       {/* Mode Toggle */}
-      <div className="flex items-center justify-center gap-4 mb-8">
+      <nav className="flex items-center justify-center gap-3 md:gap-4 mb-8" aria-label="اختيار نوع التحويل">
         <button
           onClick={() => setMode('toHijri')}
-          className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+          className={`min-w-[120px] min-h-[48px] px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
             mode === 'toHijri'
               ? 'bg-primary text-primary-foreground shadow-card'
               : 'bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground'
           }`}
+          aria-pressed={mode === 'toHijri'}
         >
           ميلادي ← هجري
         </button>
         <button
           onClick={toggleMode}
-          className="p-3 rounded-full bg-secondary hover:bg-accent transition-colors duration-300"
+          className="min-w-[48px] min-h-[48px] p-3 rounded-full bg-secondary hover:bg-accent transition-colors duration-200"
           aria-label="تبديل اتجاه التحويل"
         >
-          <ArrowLeftRight className="w-5 h-5 text-foreground" />
+          <ArrowLeftRight className="w-5 h-5 text-foreground" aria-hidden="true" />
         </button>
         <button
           onClick={() => setMode('toGregorian')}
-          className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+          className={`min-w-[120px] min-h-[48px] px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
             mode === 'toGregorian'
               ? 'bg-primary text-primary-foreground shadow-card'
               : 'bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground'
           }`}
+          aria-pressed={mode === 'toGregorian'}
         >
           هجري ← ميلادي
         </button>
-      </div>
+      </nav>
 
       {/* Input Section */}
       <div className="bg-card rounded-2xl p-6 md:p-8 shadow-card border border-border/30">
@@ -230,14 +232,15 @@ const DateConverter = () => {
           onClick={handleConvert}
           variant="converter"
           size="xl"
-          className="w-full mt-6"
+          className="w-full mt-6 min-h-[56px]"
           disabled={isConverting}
+          aria-busy={isConverting}
         >
           {isConverting ? (
-            <span className="animate-pulse-soft">جارٍ التحويل...</span>
+            <span>جارٍ التحويل...</span>
           ) : (
             <>
-              <Sparkles className="w-5 h-5 ml-2" />
+              <Sparkles className="w-5 h-5 ml-2" aria-hidden="true" />
               تحويل
             </>
           )}

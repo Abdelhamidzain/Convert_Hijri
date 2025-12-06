@@ -1,27 +1,47 @@
 import { Helmet } from 'react-helmet-async';
+import { lazy, Suspense } from 'react';
 import DateConverter from '@/components/DateConverter';
-import SEOContent from '@/components/SEOContent';
+
+const SEOContent = lazy(() => import('@/components/SEOContent'));
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "كيف أعرف تاريخ اليوم هجري؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "يظهر تاريخ اليوم هجري وميلادي تلقائياً في أعلى الصفحة. نعرض لك كم التاريخ الهجري اليوم بالأرقام واسم اليوم بالعربية."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "كيف أحول التاريخ من هجري لميلادي؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "اختر هجري إلى ميلادي ثم أدخل التاريخ الهجري (اليوم، الشهر، السنة) واضغط تحويل. ستحصل على التاريخ الميلادي فوراً."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ما الفرق بين التاريخ الهجري والميلادي؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "التقويم الهجري قمري (354-355 يوم) بينما التقويم الميلادي شمسي (365-366 يوم). لذلك التاريخ الهجري مقابل الميلادي يتغير كل سنة بفارق حوالي 11 يوماً."
+      }
+    }
+  ]
+};
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <html lang="ar" dir="rtl" />
-        <title>تاريخ اليوم هجري | تحويل التاريخ الهجري - التقويم الهجري 1446</title>
-        <meta 
-          name="description" 
-          content="تاريخ اليوم هجري وميلادي - أداة تحويل التاريخ من هجري لميلادي والعكس. اعرف كم التاريخ الهجري اليوم بدقة. التقويم الهجري 1446 - محول التاريخ الأسرع والأدق." 
-        />
-        <meta 
-          name="keywords" 
-          content="تاريخ اليوم هجري, التاريخ الهجري, تحويل التاريخ, تاريخ اليوم ميلادي, التقويم الهجري, تحويل من هجري لميلادي, تحويل من هجري الى ميلادي, التاريخ الميلادي, تحويل التاريخ الهجري, محول التاريخ, تحويل التاريخ من هجري الى ميلادي, كم تاريخ اليوم, تاريخ هجري, التقويم الهجري 1446, تقويم هجري, كم التاريخ هجري, هجري ميلادي, تاريخ ميلادي, التقويم الهجري 1447, شهر كم هجري, تحويل هجري ميلادي" 
-        />
-        <meta property="og:title" content="تاريخ اليوم هجري | تحويل التاريخ الهجري - التقويم الهجري" />
-        <meta property="og:description" content="اعرف تاريخ اليوم هجري وميلادي. أداة تحويل التاريخ من هجري لميلادي والعكس بسرعة ودقة عالية. التقويم الهجري 1446." />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="تحويل التاريخ الهجري" />
-        <meta property="og:locale" content="ar_AR" />
-        <link rel="canonical" href="https://hijri-converter.lovable.app" />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background pattern-islamic" dir="rtl">
@@ -32,8 +52,10 @@ const Index = () => {
             <div className="mb-6 flex justify-center">
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center" role="img" aria-label="أيقونة الهلال">
                 <svg 
+                  width="32"
+                  height="32"
                   viewBox="0 0 24 24" 
-                  className="w-8 h-8 text-primary"
+                  className="text-primary"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -60,11 +82,11 @@ const Index = () => {
         {/* Main Content */}
         <main className="px-4 pb-16">
           <div className="container max-w-4xl mx-auto">
-            <div>
-              <DateConverter />
-            </div>
+          <DateConverter />
             
+          <Suspense fallback={<div className="mt-16 text-center text-muted-foreground">جارٍ التحميل...</div>}>
             <SEOContent />
+          </Suspense>
           </div>
         </main>
 
