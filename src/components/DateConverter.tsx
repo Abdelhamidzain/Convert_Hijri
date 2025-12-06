@@ -125,7 +125,7 @@ const DateConverter = () => {
           className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
             mode === 'toHijri'
               ? 'bg-primary text-primary-foreground shadow-card'
-              : 'bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+              : 'bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground'
           }`}
         >
           ميلادي ← هجري
@@ -142,7 +142,7 @@ const DateConverter = () => {
           className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
             mode === 'toGregorian'
               ? 'bg-primary text-primary-foreground shadow-card'
-              : 'bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+              : 'bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground'
           }`}
         >
           هجري ← ميلادي
