@@ -26,16 +26,8 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Aggressive minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-      },
-      mangle: true,
-    },
+    // Use esbuild for minification (built-in, no extra dependency)
+    minify: 'esbuild',
     // Optimize chunking for fastest initial load
     rollupOptions: {
       output: {
