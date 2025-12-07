@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import { 
   gregorianToHijri, 
   hijriToGregorian, 
@@ -11,9 +10,22 @@ import {
   type HijriDate,
   type GregorianDate
 } from '@/lib/hijriConverter';
-import { ArrowLeftRight, Sparkles } from 'lucide-react';
 
 type ConversionMode = 'toHijri' | 'toGregorian';
+
+// Inline SVG icons to avoid lucide-react bundle
+const ArrowsIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+  </svg>
+);
+
+const SparklesIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 ml-2">
+    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+    <path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/>
+  </svg>
+);
 
 const DateConverter = () => {
   const [mode, setMode] = useState<ConversionMode>('toHijri');
@@ -44,7 +56,8 @@ const DateConverter = () => {
     setError(null);
     setIsConverting(true);
 
-    setTimeout(() => {
+    // Use requestAnimationFrame for smoother UX instead of setTimeout
+    requestAnimationFrame(() => {
       try {
         if (mode === 'toHijri') {
           if (!gregorianInput) {
@@ -90,7 +103,7 @@ const DateConverter = () => {
         setResultDetails(null);
       }
       setIsConverting(false);
-    }, 300);
+    });
   };
 
   const toggleMode = () => {
@@ -102,9 +115,14 @@ const DateConverter = () => {
 
   const { hijri: todayHijri, gregorian: todayGregorian } = getTodayDates();
 
+  // Button base styles - inline to avoid dependency
+  const btnBase = "min-w-[120px] min-h-[48px] px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-200";
+  const btnActive = "bg-primary text-primary-foreground shadow-card";
+  const btnInactive = "bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground";
+
   return (
     <div className="w-full max-w-2xl mx-auto">
-      {/* Today's Date Display - High Volume Keywords */}
+      {/* Today's Date Display */}
       <div className="mb-8 p-5 rounded-xl bg-secondary/50 border border-border/50 text-center">
         <h2 className="text-sm font-medium text-muted-foreground mb-2">تاريخ اليوم هجري وميلادي</h2>
         <p className="text-xl font-bold text-foreground">
@@ -122,11 +140,7 @@ const DateConverter = () => {
       <nav className="flex items-center justify-center gap-3 md:gap-4 mb-8" aria-label="اختيار نوع التحويل">
         <button
           onClick={() => setMode('toHijri')}
-          className={`min-w-[120px] min-h-[48px] px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
-            mode === 'toHijri'
-              ? 'bg-primary text-primary-foreground shadow-card'
-              : 'bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground'
-          }`}
+          className={`${btnBase} ${mode === 'toHijri' ? btnActive : btnInactive}`}
           aria-pressed={mode === 'toHijri'}
         >
           ميلادي ← هجري
@@ -136,15 +150,11 @@ const DateConverter = () => {
           className="min-w-[48px] min-h-[48px] p-3 rounded-full bg-secondary hover:bg-accent transition-colors duration-200"
           aria-label="تبديل اتجاه التحويل"
         >
-          <ArrowLeftRight className="w-5 h-5 text-foreground" aria-hidden="true" />
+          <ArrowsIcon />
         </button>
         <button
           onClick={() => setMode('toGregorian')}
-          className={`min-w-[120px] min-h-[48px] px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
-            mode === 'toGregorian'
-              ? 'bg-primary text-primary-foreground shadow-card'
-              : 'bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground'
-          }`}
+          className={`${btnBase} ${mode === 'toGregorian' ? btnActive : btnInactive}`}
           aria-pressed={mode === 'toGregorian'}
         >
           هجري ← ميلادي
@@ -227,24 +237,22 @@ const DateConverter = () => {
           </div>
         )}
 
-        {/* Convert Button */}
-        <Button
+        {/* Convert Button - Inline styles to avoid Button component */}
+        <button
           onClick={handleConvert}
-          variant="converter"
-          size="xl"
-          className="w-full mt-6 min-h-[56px]"
           disabled={isConverting}
+          className="w-full mt-6 min-h-[56px] px-8 py-4 rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground font-semibold text-lg flex items-center justify-center gap-2 shadow-card hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-busy={isConverting}
         >
           {isConverting ? (
             <span>جارٍ التحويل...</span>
           ) : (
             <>
-              <Sparkles className="w-5 h-5 ml-2" aria-hidden="true" />
+              <SparklesIcon />
               تحويل
             </>
           )}
-        </Button>
+        </button>
 
         {/* Error Message */}
         {error && (
@@ -259,7 +267,7 @@ const DateConverter = () => {
             <p className="text-sm text-muted-foreground mb-2">
               {mode === 'toHijri' ? 'التاريخ الهجري' : 'التاريخ الميلادي'}
             </p>
-            <p className="text-2xl md:text-3xl font-display font-bold text-primary">
+            <p className="text-2xl md:text-3xl font-bold text-primary">
               {result}
             </p>
             {resultDetails && (

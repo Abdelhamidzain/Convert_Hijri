@@ -1,48 +1,28 @@
-import { Helmet } from 'react-helmet-async';
 import { lazy, Suspense } from 'react';
 import DateConverter from '@/components/DateConverter';
 
+// Lazy load SEO content - not needed for initial paint
 const SEOContent = lazy(() => import('@/components/SEOContent'));
 
-const faqSchema = {
+// Inline FAQ schema to avoid react-helmet-async dependency
+const faqSchemaScript = `{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "كيف أعرف تاريخ اليوم هجري؟",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "يظهر تاريخ اليوم هجري وميلادي تلقائياً في أعلى الصفحة. نعرض لك كم التاريخ الهجري اليوم بالأرقام واسم اليوم بالعربية."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "كيف أحول التاريخ من هجري لميلادي؟",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "اختر هجري إلى ميلادي ثم أدخل التاريخ الهجري (اليوم، الشهر، السنة) واضغط تحويل. ستحصل على التاريخ الميلادي فوراً."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "ما الفرق بين التاريخ الهجري والميلادي؟",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "التقويم الهجري قمري (354-355 يوم) بينما التقويم الميلادي شمسي (365-366 يوم). لذلك التاريخ الهجري مقابل الميلادي يتغير كل سنة بفارق حوالي 11 يوماً."
-      }
-    }
+    {"@type": "Question", "name": "كيف أعرف تاريخ اليوم هجري؟", "acceptedAnswer": {"@type": "Answer", "text": "يظهر تاريخ اليوم هجري وميلادي تلقائياً في أعلى الصفحة."}},
+    {"@type": "Question", "name": "كيف أحول التاريخ من هجري لميلادي؟", "acceptedAnswer": {"@type": "Answer", "text": "اختر هجري إلى ميلادي ثم أدخل التاريخ الهجري واضغط تحويل."}},
+    {"@type": "Question", "name": "ما الفرق بين التاريخ الهجري والميلادي؟", "acceptedAnswer": {"@type": "Answer", "text": "التقويم الهجري قمري (354-355 يوم) بينما الميلادي شمسي (365-366 يوم)."}}
   ]
-};
+}`;
 
 const Index = () => {
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
+      {/* Inject schema without react-helmet */}
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: faqSchemaScript }}
+      />
 
       <div className="min-h-screen bg-background pattern-islamic" dir="rtl">
         {/* Header */}
@@ -68,7 +48,7 @@ const Index = () => {
               </div>
             </div>
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
               تاريخ اليوم هجري - تحويل التاريخ الهجري
             </h1>
             <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto">
@@ -82,11 +62,12 @@ const Index = () => {
         {/* Main Content */}
         <main className="px-4 pb-16">
           <div className="container max-w-4xl mx-auto">
-          <DateConverter />
+            <DateConverter />
             
-          <Suspense fallback={<div className="mt-16 text-center text-muted-foreground">جارٍ التحميل...</div>}>
-            <SEOContent />
-          </Suspense>
+            {/* Lazy load SEO content after main converter */}
+            <Suspense fallback={null}>
+              <SEOContent />
+            </Suspense>
           </div>
         </main>
 
