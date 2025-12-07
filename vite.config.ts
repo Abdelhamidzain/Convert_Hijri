@@ -26,44 +26,27 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Use esbuild for minification (built-in, fast)
+    // Use esbuild for minification (built-in, no extra dependency)
     minify: 'esbuild',
-    // Aggressive code splitting for lazy loading
+    // Optimize chunking for fastest initial load
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // Core React - smallest possible initial bundle
-          if (id.includes('node_modules/react-dom')) {
-            return 'react-dom';
-          }
-          if (id.includes('node_modules/react/')) {
-            return 'react';
-          }
-          // Router in separate chunk
-          if (id.includes('react-router')) {
-            return 'router';
-          }
-          // DateConverter and heavy logic in separate chunk
-          if (id.includes('DateConverter') || id.includes('hijriConverter')) {
-            return 'converter';
-          }
-          // SEO content lazy loaded
-          if (id.includes('SEOContent')) {
-            return 'seo';
-          }
+        manualChunks: {
+          // Core React - loaded first
+          'react-core': ['react', 'react-dom'],
+          // Router - needed for navigation
+          'router': ['react-router-dom'],
         },
       },
     },
-    // Single CSS file - already have critical inline
+    // Single CSS file for critical path
     cssCodeSplit: false,
     // Reduce chunk size warnings
-    chunkSizeWarningLimit: 200,
+    chunkSizeWarningLimit: 300,
     // Target modern browsers only
     target: 'es2020',
-    // Inline small assets to reduce requests
-    assetsInlineLimit: 8192,
-    // Source maps off for production
-    sourcemap: false,
+    // Inline small assets
+    assetsInlineLimit: 4096,
   },
   // Optimize dependencies
   optimizeDeps: {

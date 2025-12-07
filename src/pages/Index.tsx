@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
+import DateConverter from '@/components/DateConverter';
 
-// Lazy load both components - DateConverter after first paint, SEO content even later
-const DateConverter = lazy(() => import('@/components/DateConverter'));
+// Lazy load SEO content - not needed for initial paint
 const SEOContent = lazy(() => import('@/components/SEOContent'));
 
 // Inline FAQ schema to avoid react-helmet-async dependency
@@ -62,38 +62,17 @@ const Index = () => {
         {/* Main Content */}
         <main className="px-4 pb-16">
           <div className="container max-w-4xl mx-auto">
-            {/* Lazy load DateConverter - shows skeleton until ready */}
-            <Suspense fallback={
-              <div className="w-full max-w-2xl mx-auto">
-                <div className="mb-8 p-5 rounded-xl bg-secondary/50 border border-border/50">
-                  <div className="h-6 bg-muted rounded animate-pulse mb-2 mx-auto w-48" />
-                  <div className="h-8 bg-muted rounded animate-pulse mx-auto w-64" />
-                </div>
-                <div className="flex justify-center gap-3 mb-8">
-                  <div className="h-12 w-32 bg-muted rounded-xl animate-pulse" />
-                  <div className="h-12 w-12 bg-muted rounded-full animate-pulse" />
-                  <div className="h-12 w-32 bg-muted rounded-xl animate-pulse" />
-                </div>
-                <div className="bg-card rounded-2xl p-6 shadow-card border border-border/30">
-                  <div className="h-14 bg-muted rounded-xl animate-pulse mb-4" />
-                  <div className="h-14 bg-muted rounded-xl animate-pulse" />
-                </div>
-              </div>
-            }>
-              <DateConverter />
-            </Suspense>
+            <DateConverter />
             
-            {/* Below-fold SEO content with content-visibility optimization */}
-            <div className="below-fold" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
-              <Suspense fallback={null}>
-                <SEOContent />
-              </Suspense>
-            </div>
+            {/* Lazy load SEO content after main converter */}
+            <Suspense fallback={null}>
+              <SEOContent />
+            </Suspense>
           </div>
         </main>
 
-        {/* Footer - below fold with content-visibility */}
-        <footer className="border-t border-border/50 py-8 px-4 below-fold" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 100px' }}>
+        {/* Footer */}
+        <footer className="border-t border-border/50 py-8 px-4">
           <div className="container max-w-4xl mx-auto text-center">
             <p className="text-muted-foreground text-sm">
               تحويل التاريخ الهجري | تاريخ اليوم هجري وميلادي | التقويم الهجري 1446

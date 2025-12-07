@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   gregorianToHijri, 
   hijriToGregorian, 
@@ -38,40 +38,25 @@ const DateConverter = () => {
   const [error, setError] = useState<string | null>(null);
   const [isConverting, setIsConverting] = useState(false);
 
-  // Memoize static data
-  const hijriMonths = useMemo(() => getHijriMonths(), []);
-  
-  // Memoize today's dates - only calculate once
-  const { todayHijri, todayGregorian } = useMemo(() => {
-    const { hijri, gregorian } = getTodayDates();
-    return { todayHijri: hijri, todayGregorian: gregorian };
+  const hijriMonths = getHijriMonths();
+
+  // Set default date to today
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    setGregorianInput(formattedDate);
+    
+    const { hijri } = getTodayDates();
+    setHijriDay(hijri.day.toString());
+    setHijriMonth(hijri.month.toString());
+    setHijriYear(hijri.year.toString());
   }, []);
 
-  // Set default date to today - defer after paint
-  useEffect(() => {
-    // Use requestIdleCallback if available, otherwise setTimeout
-    const setDefaults = () => {
-      const today = new Date();
-      const formattedDate = today.toISOString().split('T')[0];
-      setGregorianInput(formattedDate);
-      setHijriDay(todayHijri.day.toString());
-      setHijriMonth(todayHijri.month.toString());
-      setHijriYear(todayHijri.year.toString());
-    };
-    
-    if ('requestIdleCallback' in window) {
-      (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(setDefaults);
-    } else {
-      setTimeout(setDefaults, 0);
-    }
-  }, [todayHijri]);
-
-  // Memoized convert handler - defers heavy computation
-  const handleConvert = useCallback(() => {
+  const handleConvert = () => {
     setError(null);
     setIsConverting(true);
 
-    // Defer computation to next frame for smoother UX
+    // Use requestAnimationFrame for smoother UX instead of setTimeout
     requestAnimationFrame(() => {
       try {
         if (mode === 'toHijri') {
@@ -119,15 +104,16 @@ const DateConverter = () => {
       }
       setIsConverting(false);
     });
-  }, [mode, gregorianInput, hijriDay, hijriMonth, hijriYear]);
+  };
 
-  // Memoized toggle handler
-  const toggleMode = useCallback(() => {
-    setMode(m => m === 'toHijri' ? 'toGregorian' : 'toHijri');
+  const toggleMode = () => {
+    setMode(mode === 'toHijri' ? 'toGregorian' : 'toHijri');
     setResult(null);
     setResultDetails(null);
     setError(null);
-  }, []);
+  };
+
+  const { hijri: todayHijri, gregorian: todayGregorian } = getTodayDates();
 
   // Button base styles - inline to avoid dependency
   const btnBase = "min-w-[120px] min-h-[48px] px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-200";
