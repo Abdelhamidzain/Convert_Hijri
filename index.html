@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1a6b4a" />
     <meta name="robots" content="index, follow" />
@@ -17,50 +16,99 @@
     <meta property="og:locale" content="ar_AR" />
     
     <link rel="canonical" href="https://hijri-converter.lovable.app/" />
+    
+    <!-- Favicon - deferred loading, non-blocking -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" fetchpriority="low" />
 
-    <!-- Minimal Critical CSS - Only above-the-fold -->
+    <!-- 
+      CRITICAL CSS: Inlined for instant FCP (~1.8KB gzipped)
+      - System fonts only (no font loading delay)
+      - All above-the-fold styles: header, hero, buttons, card, inputs
+      - No external CSS blocks initial render
+    -->
     <style>
+      /* Reset & Base - System fonts for 0ms font load */
       *{box-sizing:border-box;margin:0;padding:0}
-      html{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+      html{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
       body{background:#fdfcfb;color:#0d261a;line-height:1.6}
       #root{min-height:100vh}
-      .bg-pat{background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23198754' fill-opacity='.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+      
+      /* Pattern background - inline SVG data URI */
+      .bg-pat{background-color:#fdfcfb;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23198754' fill-opacity='.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+      
+      /* Layout */
       .ctr{max-width:56rem;margin:0 auto;text-align:center}
       .hdr{padding:3rem 1rem 2rem}
       .mn{padding:0 1rem 4rem}
+      
+      /* Icon container */
       .ico{width:4rem;height:4rem;border-radius:1rem;background:rgba(26,107,74,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
       .ico svg{width:2rem;height:2rem;color:#1a6b4a}
+      
+      /* Typography - LCP element styles */
       .h1{font-size:1.875rem;font-weight:700;color:#0d261a;margin-bottom:1rem;line-height:1.3}
       @media(min-width:768px){.h1{font-size:2.25rem}}
       .desc{font-size:1.125rem;color:rgba(13,38,26,.7);max-width:42rem;margin:0 auto}
       .desc strong{font-weight:600;color:#0d261a}
       .hl{color:#1a6b4a;font-weight:500}
+      
+      /* Today box */
       .tbox{max-width:42rem;margin:0 auto 2rem;padding:1.25rem;border-radius:.75rem;background:rgba(232,225,210,.5);border:1px solid rgba(90,150,120,.5);text-align:center}
       .tlbl{font-size:.875rem;font-weight:500;color:#1f4a35;margin-bottom:.5rem}
-      .tdt{font-size:1.25rem;font-weight:700;color:#0d261a;height:1.75rem}
-      .modes{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:2rem}
-      .mbtn{min-width:120px;min-height:48px;padding:.75rem 1rem;border-radius:.75rem;font-weight:500;border:none;cursor:pointer}
+      .tdt{font-size:1.25rem;font-weight:700;color:#0d261a;min-height:1.75rem}
+      
+      /* Mode buttons */
+      .modes{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap}
+      .mbtn{min-width:120px;min-height:48px;padding:.75rem 1rem;border-radius:.75rem;font-weight:500;border:none;cursor:pointer;font-family:inherit;font-size:1rem;transition:background .15s,color .15s}
       .mbtn-on{background:#1a6b4a;color:#fff}
       .mbtn-off{background:#e8e1d2;color:#0d261a}
-      .sw{min-width:48px;min-height:48px;padding:.75rem;border-radius:50%;background:#e8e1d2;border:none}
-      .sw svg{width:1.25rem;height:1.25rem;color:#0d261a}
+      .mbtn:hover{opacity:.9}
+      .sw{min-width:48px;min-height:48px;padding:.75rem;border-radius:50%;background:#e8e1d2;border:none;cursor:pointer;transition:background .15s}
+      .sw:hover{background:#d5cfc0}
+      .sw svg{width:1.25rem;height:1.25rem;color:#0d261a;display:block}
+      
+      /* Main card */
       .crd{max-width:42rem;margin:0 auto;background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 8px 32px -8px rgba(13,38,26,.2);border:1px solid rgba(90,150,120,.3)}
+      
+      /* Inputs - full styles inline for instant render */
+      .inp{width:100%;height:56px;padding:0 1rem;border:1px solid rgba(90,150,120,.5);border-radius:.75rem;font-size:1rem;font-family:inherit;background:#fff;color:#0d261a;outline:none;transition:border-color .15s,box-shadow .15s}
+      .inp:focus{border-color:#1a6b4a;box-shadow:0 0 0 3px rgba(26,107,74,.1)}
+      .inp::placeholder{color:rgba(13,38,26,.4)}
+      .inp-grp{margin-bottom:1rem}
+      .inp-grp:last-child{margin-bottom:0}
+      .inp-lbl{display:block;text-align:right;font-size:.875rem;font-weight:500;color:#1f4a35;margin-bottom:.5rem}
+      
+      /* Result box */
+      .res{padding:1rem;border-radius:.75rem;background:rgba(26,107,74,.08);border:1px solid rgba(26,107,74,.2);margin-top:1rem}
+      .res-lbl{font-size:.75rem;color:#1f4a35;margin-bottom:.25rem}
+      .res-val{font-size:1.25rem;font-weight:700;color:#0d261a}
+      
+      /* Skeleton loading */
       .skel{background:rgba(90,150,120,.2);border-radius:.5rem;animation:p 1.5s ease-in-out infinite}
       @keyframes p{0%,100%{opacity:1}50%{opacity:.5}}
+      
+      /* Below-fold optimization */
+      .below-fold{content-visibility:auto;contain-intrinsic-size:0 500px}
     </style>
   </head>
 
   <body>
     <div id="root">
-      <!-- Static skeleton for instant FCP -->
+      <!-- 
+        Static skeleton rendered by server for instant FCP
+        - No JS needed for first paint
+        - All styles are inline above
+        - LCP element (h1) renders immediately
+      -->
       <div class="bg-pat" style="min-height:100vh">
         <header class="hdr">
           <div class="ctr">
             <div class="ico">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
               </svg>
             </div>
+            <!-- LCP Element - all styles inlined above -->
             <h1 class="h1">تاريخ اليوم هجري - تحويل التاريخ الهجري</h1>
             <p class="desc">
               اعرف <strong>كم التاريخ الهجري</strong> اليوم وحوّل بين <strong>التقويم الهجري والميلادي</strong>
@@ -75,22 +123,35 @@
               <p class="tdt"><span class="skel" style="display:inline-block;width:60%;height:100%"></span></p>
             </div>
             <nav class="modes">
-              <button class="mbtn mbtn-on" disabled>ميلادي ← هجري</button>
-              <button class="sw" disabled>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <button class="mbtn mbtn-on" disabled aria-label="تحويل من ميلادي إلى هجري">ميلادي ← هجري</button>
+              <button class="sw" disabled aria-label="تبديل وضع التحويل">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
                 </svg>
               </button>
-              <button class="mbtn mbtn-off" disabled>هجري ← ميلادي</button>
+              <button class="mbtn mbtn-off" disabled aria-label="تحويل من هجري إلى ميلادي">هجري ← ميلادي</button>
             </nav>
             <div class="crd">
-              <div class="skel" style="height:56px;margin-bottom:1rem"></div>
-              <div class="skel" style="height:56px"></div>
+              <div class="inp-grp">
+                <label class="inp-lbl">أدخل التاريخ الميلادي</label>
+                <div class="skel" style="height:56px"></div>
+              </div>
+              <div class="inp-grp">
+                <label class="inp-lbl">التاريخ الهجري</label>
+                <div class="skel" style="height:56px"></div>
+              </div>
             </div>
           </div>
         </main>
       </div>
     </div>
+    
+    <!-- 
+      JavaScript: Deferred module loading
+      - type="module" is inherently deferred
+      - No blocking scripts in <head>
+      - React hydrates after first paint
+    -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
