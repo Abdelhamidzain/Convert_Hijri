@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
+// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -10,8 +10,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    // CSS injected by JS - eliminates render-blocking CSS
-    cssInjectedByJsPlugin({ topExecutionPriority: false }),
+    // Only include tagger in development
     mode === "development" && (() => {
       try {
         const { componentTagger } = require("lovable-tagger");
@@ -27,23 +26,34 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    // Use esbuild for minification (built-in, no extra dependency)
     minify: 'esbuild',
+    // Optimize chunking for fastest initial load
     rollupOptions: {
       output: {
         manualChunks: {
+          // Core React - loaded first
           'react-core': ['react', 'react-dom'],
+          // Router - needed for navigation
           'router': ['react-router-dom'],
         },
       },
     },
+    // Single CSS file for critical path
     cssCodeSplit: false,
+    // Reduce chunk size warnings
     chunkSizeWarningLimit: 300,
+    // Target modern browsers only
     target: 'es2020',
+    // Inline small assets
     assetsInlineLimit: 4096,
   },
+  // Optimize dependencies
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
+    exclude: [],
   },
+  // CSS optimization
   css: {
     devSourcemap: false,
   },
