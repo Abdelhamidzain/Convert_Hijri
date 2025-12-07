@@ -2,12 +2,8 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Preload critical resources FIRST -->
-    <link rel="modulepreload" href="/src/main.tsx" />
-    
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1a6b4a" />
     <meta name="robots" content="index, follow" />
     <meta name="google-site-verification" content="6MY75cSkh5b9aYM0uwczr4Y_r0fwcGmcMzWp7gcsXMo" />
@@ -22,13 +18,13 @@
     
     <link rel="canonical" href="https://hijri-converter.lovable.app/" />
 
-    <!-- CRITICAL CSS: Inlined for instant FCP - eliminates render-blocking CSS -->
+    <!-- Minimal Critical CSS - Only above-the-fold -->
     <style>
       *{box-sizing:border-box;margin:0;padding:0}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;-webkit-font-smoothing:antialiased}
       body{background:#fdfcfb;color:#0d261a;line-height:1.6}
       #root{min-height:100vh}
-      .bg-pat{background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23198754' fill-opacity='.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");background-repeat:repeat;background-size:60px 60px}
+      .bg-pat{background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23198754' fill-opacity='.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
       .ctr{max-width:56rem;margin:0 auto;text-align:center}
       .hdr{padding:3rem 1rem 2rem}
       .mn{padding:0 1rem 4rem}
@@ -41,9 +37,9 @@
       .hl{color:#1a6b4a;font-weight:500}
       .tbox{max-width:42rem;margin:0 auto 2rem;padding:1.25rem;border-radius:.75rem;background:rgba(232,225,210,.5);border:1px solid rgba(90,150,120,.5);text-align:center}
       .tlbl{font-size:.875rem;font-weight:500;color:#1f4a35;margin-bottom:.5rem}
-      .tdt{font-size:1.25rem;font-weight:700;color:#0d261a;min-height:1.75rem}
-      .modes{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap}
-      .mbtn{min-width:120px;min-height:48px;padding:.75rem 1rem;border-radius:.75rem;font-weight:500;font-size:.875rem;border:none;cursor:pointer}
+      .tdt{font-size:1.25rem;font-weight:700;color:#0d261a;height:1.75rem}
+      .modes{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:2rem}
+      .mbtn{min-width:120px;min-height:48px;padding:.75rem 1rem;border-radius:.75rem;font-weight:500;border:none;cursor:pointer}
       .mbtn-on{background:#1a6b4a;color:#fff}
       .mbtn-off{background:#e8e1d2;color:#0d261a}
       .sw{min-width:48px;min-height:48px;padding:.75rem;border-radius:50%;background:#e8e1d2;border:none}
@@ -56,7 +52,7 @@
 
   <body>
     <div id="root">
-      <!-- Static skeleton matches React output - enables instant FCP & good LCP -->
+      <!-- Static skeleton for instant FCP -->
       <div class="bg-pat" style="min-height:100vh">
         <header class="hdr">
           <div class="ctr">
