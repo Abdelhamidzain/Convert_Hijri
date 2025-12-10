@@ -12,6 +12,13 @@ const AgeCalculatorGregorian = lazy(() => import("./pages/AgeCalculatorGregorian
 const CityDate = lazy(() => import("./pages/CityDate"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+// Trend-jacking pages
+const SalaryDateGregorian = lazy(() => import("./pages/SalaryDateGregorian"));
+const SalaryDateHijri = lazy(() => import("./pages/SalaryDateHijri"));
+const WhiteDays = lazy(() => import("./pages/WhiteDays"));
+const HijriMonthStart = lazy(() => import("./pages/HijriMonthStart"));
+const IslamicEvents = lazy(() => import("./pages/IslamicEvents"));
+
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <div className="text-center">
@@ -24,62 +31,23 @@ const PageLoader = () => (
 const App = () => (
   <BrowserRouter>
     <Routes>
-      {/* Main page */}
       <Route path="/" element={<Index />} />
+      <Route path="/date/today" element={<Suspense fallback={<PageLoader />}><TodayDate /></Suspense>} />
+      <Route path="/calendar/:year" element={<Suspense fallback={<PageLoader />}><CalendarYear /></Suspense>} />
+      <Route path="/convert/hijri-to-gregorian/:year" element={<Suspense fallback={<PageLoader />}><HijriToGregorianYear /></Suspense>} />
+      <Route path="/convert/gregorian-to-hijri/:year" element={<Suspense fallback={<PageLoader />}><GregorianToHijriYear /></Suspense>} />
+      <Route path="/how-old-am-i/hijri" element={<Suspense fallback={<PageLoader />}><AgeCalculatorHijri /></Suspense>} />
+      <Route path="/how-old-am-i/gregorian" element={<Suspense fallback={<PageLoader />}><AgeCalculatorGregorian /></Suspense>} />
+      <Route path="/date-today/:city" element={<Suspense fallback={<PageLoader />}><CityDate /></Suspense>} />
       
-      {/* Today's date */}
-      <Route path="/date/today" element={
-        <Suspense fallback={<PageLoader />}>
-          <TodayDate />
-        </Suspense>
-      } />
+      {/* Trend-jacking routes */}
+      <Route path="/salary/date/:monthYear" element={<Suspense fallback={<PageLoader />}><SalaryDateGregorian /></Suspense>} />
+      <Route path="/salary/hijri/:monthYear" element={<Suspense fallback={<PageLoader />}><SalaryDateHijri /></Suspense>} />
+      <Route path="/white-days/:monthYear" element={<Suspense fallback={<PageLoader />}><WhiteDays /></Suspense>} />
+      <Route path="/hijri-month/start/:monthYear" element={<Suspense fallback={<PageLoader />}><HijriMonthStart /></Suspense>} />
+      <Route path="/events/:eventYear" element={<Suspense fallback={<PageLoader />}><IslamicEvents /></Suspense>} />
       
-      {/* Calendar year pages */}
-      <Route path="/calendar/:year" element={
-        <Suspense fallback={<PageLoader />}>
-          <CalendarYear />
-        </Suspense>
-      } />
-      
-      {/* Hijri to Gregorian conversion pages */}
-      <Route path="/convert/hijri-to-gregorian/:year" element={
-        <Suspense fallback={<PageLoader />}>
-          <HijriToGregorianYear />
-        </Suspense>
-      } />
-      
-      {/* Gregorian to Hijri conversion pages */}
-      <Route path="/convert/gregorian-to-hijri/:year" element={
-        <Suspense fallback={<PageLoader />}>
-          <GregorianToHijriYear />
-        </Suspense>
-      } />
-      
-      {/* Age calculators */}
-      <Route path="/how-old-am-i/hijri" element={
-        <Suspense fallback={<PageLoader />}>
-          <AgeCalculatorHijri />
-        </Suspense>
-      } />
-      <Route path="/how-old-am-i/gregorian" element={
-        <Suspense fallback={<PageLoader />}>
-          <AgeCalculatorGregorian />
-        </Suspense>
-      } />
-      
-      {/* City date pages */}
-      <Route path="/date-today/:city" element={
-        <Suspense fallback={<PageLoader />}>
-          <CityDate />
-        </Suspense>
-      } />
-      
-      {/* 404 */}
-      <Route path="*" element={
-        <Suspense fallback={<PageLoader />}>
-          <NotFound />
-        </Suspense>
-      } />
+      <Route path="*" element={<Suspense fallback={<PageLoader />}><NotFound /></Suspense>} />
     </Routes>
   </BrowserRouter>
 );
