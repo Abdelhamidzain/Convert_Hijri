@@ -6,6 +6,7 @@ import { SEOHead, generateWebPageSchema, generateBreadcrumbSchema, generateFAQSc
 import { FAQSection } from '@/components/FAQSection';
 import { InternalLinks } from '@/components/InternalLinks';
 import { ContentCluster } from '@/components/ContentCluster';
+import { PageLayout } from '@/components/PageLayout';
 import { Button } from '@/components/ui/button';
 
 export default function HijriToGregorianYear() {
@@ -57,7 +58,7 @@ export default function HijriToGregorianYear() {
   };
   
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <PageLayout>
       <SEOHead seo={seo} schema={schema} />
       
       <header className="bg-primary/5 border-b border-border">
@@ -72,7 +73,7 @@ export default function HijriToGregorianYear() {
         </div>
       </header>
       
-      <main className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8">
         {/* Conversion Form */}
         <div className="bg-card border border-border rounded-xl p-6 mb-8">
           <h2 className="text-xl font-bold mb-4 text-foreground">أدخل التاريخ الهجري</h2>
@@ -173,15 +174,7 @@ export default function HijriToGregorianYear() {
         
         {/* Internal Links */}
         <InternalLinks type="hijri-convert" currentYear={hijriYear} />
-      </main>
-      
-      <footer className="bg-secondary/30 border-t border-border py-8 mt-12">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <Link to="/" className="hover:text-primary">محول التاريخ الهجري</Link>
-          {' | '}
-          <Link to="/date/today" className="hover:text-primary">تاريخ اليوم</Link>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </PageLayout>
   );
 }

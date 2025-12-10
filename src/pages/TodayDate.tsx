@@ -6,6 +6,7 @@ import { SEOHead, generateWebPageSchema, generateBreadcrumbSchema, generateFAQSc
 import { FAQSection } from '@/components/FAQSection';
 import { InternalLinks } from '@/components/InternalLinks';
 import { ContentCluster } from '@/components/ContentCluster';
+import { PageLayout } from '@/components/PageLayout';
 
 export default function TodayDate() {
   const seo = generateTodayDateSEO();
@@ -24,7 +25,7 @@ export default function TodayDate() {
   }], [seo]);
   
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <PageLayout>
       <SEOHead seo={seo} schema={schema} />
       
       <header className="bg-primary/5 border-b border-border">
@@ -39,7 +40,7 @@ export default function TodayDate() {
         </div>
       </header>
       
-      <main className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8">
         {/* Today's Date Display */}
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <div className="bg-card border border-border rounded-xl p-6 text-center">
@@ -97,17 +98,7 @@ export default function TodayDate() {
         {/* Internal Links */}
         <InternalLinks type="cities" limit={8} />
         <InternalLinks type="calendar" limit={6} />
-      </main>
-      
-      <footer className="bg-secondary/30 border-t border-border py-8 mt-12">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <Link to="/" className="hover:text-primary">محول التاريخ الهجري</Link>
-          {' | '}
-          <Link to="/date/today" className="hover:text-primary">تاريخ اليوم</Link>
-          {' | '}
-          <Link to="/how-old-am-i/hijri" className="hover:text-primary">حساب العمر</Link>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </PageLayout>
   );
 }
