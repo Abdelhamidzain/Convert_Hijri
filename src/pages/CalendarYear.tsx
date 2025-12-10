@@ -6,6 +6,7 @@ import { SEOHead, generateWebPageSchema, generateBreadcrumbSchema, generateFAQSc
 import { FAQSection } from '@/components/FAQSection';
 import { InternalLinks } from '@/components/InternalLinks';
 import { ContentCluster } from '@/components/ContentCluster';
+import { PageLayout } from '@/components/PageLayout';
 
 export default function CalendarYear() {
   const { year } = useParams<{ year: string }>();
@@ -48,7 +49,7 @@ export default function CalendarYear() {
   }, [hijriYear]);
   
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <PageLayout>
       <SEOHead seo={seo} schema={schema} />
       
       <header className="bg-primary/5 border-b border-border">
@@ -63,7 +64,7 @@ export default function CalendarYear() {
         </div>
       </header>
       
-      <main className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8">
         {/* Year Navigation */}
         <div className="flex items-center justify-between mb-6">
           {hijriYear > HIJRI_YEAR_RANGE.start && (
@@ -130,15 +131,7 @@ export default function CalendarYear() {
         
         {/* Internal Links */}
         <InternalLinks type="calendar" currentYear={hijriYear} />
-      </main>
-      
-      <footer className="bg-secondary/30 border-t border-border py-8 mt-12">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <Link to="/" className="hover:text-primary">محول التاريخ الهجري</Link>
-          {' | '}
-          <Link to="/date/today" className="hover:text-primary">تاريخ اليوم</Link>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </PageLayout>
   );
 }

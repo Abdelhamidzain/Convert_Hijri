@@ -5,6 +5,7 @@ import { generateCityDateSEO, FAQ_DATA, CITIES } from '@/lib/seoData';
 import { SEOHead, generateWebPageSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/components/SEOHead';
 import { FAQSection } from '@/components/FAQSection';
 import { InternalLinks } from '@/components/InternalLinks';
+import { PageLayout } from '@/components/PageLayout';
 
 export default function CityDate() {
   const { city } = useParams<{ city: string }>();
@@ -32,7 +33,7 @@ export default function CityDate() {
   }], [seo, city, cityData.name]);
   
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <PageLayout>
       <SEOHead seo={seo} schema={schema} />
       
       <header className="bg-primary/5 border-b border-border">
@@ -49,7 +50,7 @@ export default function CityDate() {
         </div>
       </header>
       
-      <main className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8">
         {/* City Info */}
         <div className="bg-card border border-border rounded-xl p-6 mb-8 text-center">
           <div className="text-4xl mb-4">🏙️</div>
@@ -113,15 +114,7 @@ export default function CityDate() {
         
         {/* Internal Links */}
         <InternalLinks type="all" />
-      </main>
-      
-      <footer className="bg-secondary/30 border-t border-border py-8 mt-12">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <Link to="/" className="hover:text-primary">محول التاريخ الهجري</Link>
-          {' | '}
-          <Link to="/date/today" className="hover:text-primary">تاريخ اليوم</Link>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </PageLayout>
   );
 }

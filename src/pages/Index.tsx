@@ -1,5 +1,9 @@
 import { lazy, Suspense } from 'react';
+import { Link } from 'react-router-dom';
 import DateConverter from '@/components/DateConverter';
+import { PageLayout } from '@/components/PageLayout';
+import { getTodayDates } from '@/lib/hijriConverter';
+import { InternalLinks } from '@/components/InternalLinks';
 
 // Lazy load SEO content - not needed for initial paint
 const SEOContent = lazy(() => import('@/components/SEOContent'));
@@ -131,15 +135,17 @@ const breadcrumbSchema = {
 const combinedSchema = [webAppSchema, faqSchema, breadcrumbSchema];
 
 const Index = () => {
+  const { hijri, gregorian } = getTodayDates();
+  
   return (
-    <>
+    <PageLayout>
       {/* Structured Data - WebApplication + FAQPage + BreadcrumbList */}
       <script 
         type="application/ld+json" 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
       />
 
-      <div className="min-h-screen bg-background pattern-islamic" dir="rtl">
+      <div className="pattern-islamic">
         {/* Header */}
         <header className="pt-12 pb-8 px-4">
           <div className="container max-w-4xl mx-auto text-center">
@@ -169,36 +175,67 @@ const Index = () => {
             <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto">
               اعرف <strong>كم التاريخ الهجري</strong> اليوم وحوّل بين <strong>التقويم الهجري والميلادي</strong>
               <br />
-              <span className="text-primary font-medium">التقويم الهجري 1446 - سريع ودقيق وبدون إعلانات</span>
+              <span className="text-primary font-medium">التقويم الهجري {hijri.year} - سريع ودقيق وبدون إعلانات</span>
             </p>
           </div>
         </header>
 
         {/* Main Content */}
-        <main className="px-4 pb-16">
+        <div className="px-4 pb-8">
           <div className="container max-w-4xl mx-auto">
             <DateConverter />
+            
+            {/* Quick Links Section - للربط الداخلي */}
+            <section className="mt-8 bg-card border border-border rounded-xl p-6">
+              <h2 className="text-xl font-bold text-foreground mb-4">أدوات مفيدة</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <Link 
+                  to="/date/today"
+                  className="p-4 bg-primary/10 rounded-lg text-center hover:bg-primary/20 transition-colors"
+                  title="تاريخ اليوم هجري وميلادي"
+                >
+                  <div className="text-2xl mb-2">📅</div>
+                  <div className="text-sm font-medium text-foreground">تاريخ اليوم</div>
+                </Link>
+                <Link 
+                  to={`/calendar/${hijri.year}`}
+                  className="p-4 bg-primary/10 rounded-lg text-center hover:bg-primary/20 transition-colors"
+                  title={`التقويم الهجري ${hijri.year}`}
+                >
+                  <div className="text-2xl mb-2">🗓️</div>
+                  <div className="text-sm font-medium text-foreground">التقويم {hijri.year}</div>
+                </Link>
+                <Link 
+                  to="/how-old-am-i/hijri"
+                  className="p-4 bg-primary/10 rounded-lg text-center hover:bg-primary/20 transition-colors"
+                  title="حساب العمر بالتاريخ الهجري"
+                >
+                  <div className="text-2xl mb-2">🎂</div>
+                  <div className="text-sm font-medium text-foreground">حساب العمر</div>
+                </Link>
+                <Link 
+                  to={`/convert/hijri-to-gregorian/${hijri.year}`}
+                  className="p-4 bg-primary/10 rounded-lg text-center hover:bg-primary/20 transition-colors"
+                  title={`تحويل سنة ${hijri.year} هجري لميلادي`}
+                >
+                  <div className="text-2xl mb-2">🔄</div>
+                  <div className="text-sm font-medium text-foreground">تحويل {hijri.year}</div>
+                </Link>
+              </div>
+            </section>
+            
+            {/* Internal Links */}
+            <InternalLinks type="all" />
+            <InternalLinks type="cities" limit={6} />
             
             {/* Lazy load SEO content after main converter */}
             <Suspense fallback={null}>
               <SEOContent />
             </Suspense>
           </div>
-        </main>
-
-        {/* Footer */}
-        <footer className="border-t border-border/50 py-8 px-4">
-          <div className="container max-w-4xl mx-auto text-center">
-            <p className="text-muted-foreground text-sm">
-              تحويل التاريخ الهجري | تاريخ اليوم هجري وميلادي | التقويم الهجري 1446
-            </p>
-            <p className="text-muted-foreground/60 text-xs mt-2">
-              محول التاريخ من هجري لميلادي والعكس - التحويل يعتمد على التقويم الهجري الحسابي (أم القرى)
-            </p>
-          </div>
-        </footer>
+        </div>
       </div>
-    </>
+    </PageLayout>
   );
 };
 
