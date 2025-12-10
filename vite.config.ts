@@ -25,14 +25,23 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    // Ensure single React instance
+    dedupe: ['react', 'react-dom', 'react-router-dom'],
   },
   build: {
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-core': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
+        // Keep React and Router together to avoid context issues
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+              return 'vendor-react';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'vendor-ui';
+            }
+          }
         },
       },
     },
