@@ -5,21 +5,96 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1a6b4a" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="google-site-verification" content="6MY75cSkh5b9aYM0uwczr4Y_r0fwcGmcMzWp7gcsXMo" />
-    <meta name="netlify-prerender" content="true" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
     
     <title>تاريخ اليوم هجري | تحويل التاريخ الهجري 1446</title>
     <meta name="description" content="تاريخ اليوم هجري وميلادي - تحويل التاريخ من هجري لميلادي والعكس. التقويم الهجري 1446 سريع ودقيق." />
+    <meta name="keywords" content="تاريخ اليوم هجري, تحويل التاريخ الهجري, التقويم الهجري, كم التاريخ الهجري, تحويل التاريخ من ميلادي لهجري" />
 
     <meta property="og:title" content="تاريخ اليوم هجري | تحويل التاريخ الهجري" />
     <meta property="og:description" content="أداة سريعة لتحويل التاريخ الهجري إلى ميلادي والعكس" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ar_AR" />
+    <meta property="og:site_name" content="محول التاريخ الهجري" />
+    <meta property="og:url" content="https://convert-hijri.com/" />
     
-    <link rel="canonical" href="https://hijri-converter.lovable.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="تاريخ اليوم هجري | تحويل التاريخ الهجري 1446" />
+    <meta name="twitter:description" content="أداة سريعة لتحويل التاريخ الهجري إلى ميلادي والعكس" />
+    
+    <link rel="canonical" href="https://convert-hijri.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-    <!-- Minimal Critical CSS - Only above-the-fold -->
+    <!-- Preconnect for performance -->
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+
+    <!-- Static JSON-LD Schema for SEO bots -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "محول التاريخ الهجري",
+      "alternateName": "تحويل التاريخ الهجري",
+      "url": "https://convert-hijri.com/",
+      "description": "أداة مجانية لتحويل التاريخ من الهجري إلى الميلادي والعكس. تعرف على تاريخ اليوم الهجري والميلادي بدقة.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "SAR"
+      },
+      "inLanguage": "ar",
+      "isAccessibleForFree": true,
+      "browserRequirements": "Requires JavaScript"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "محول التاريخ الهجري",
+      "url": "https://convert-hijri.com/",
+      "logo": "https://convert-hijri.com/favicon.svg"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "كم التاريخ الهجري اليوم؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "يمكنك معرفة تاريخ اليوم الهجري من خلال أداتنا التي تعرض التاريخ الهجري والميلادي بشكل لحظي ودقيق."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "كيف أحول التاريخ من ميلادي لهجري؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "أدخل التاريخ الميلادي (اليوم، الشهر، السنة) في محول التاريخ وستحصل على التاريخ الهجري المقابل فوراً."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ما هو التقويم الهجري؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "التقويم الهجري هو تقويم قمري يستخدم في الدول الإسلامية، بدأ من هجرة النبي محمد ﷺ من مكة إلى المدينة. يتكون من 12 شهراً قمرياً."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Minimal Critical CSS -->
     <style>
       *{box-sizing:border-box;margin:0;padding:0}
       html{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;-webkit-font-smoothing:antialiased}
@@ -48,6 +123,11 @@
       .crd{max-width:42rem;margin:0 auto;background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 8px 32px -8px rgba(13,38,26,.2);border:1px solid rgba(90,150,120,.3)}
       .skel{background:rgba(90,150,120,.2);border-radius:.5rem;animation:p 1.5s ease-in-out infinite}
       @keyframes p{0%,100%{opacity:1}50%{opacity:.5}}
+      .noscript-content{padding:2rem;max-width:800px;margin:0 auto}
+      .noscript-content h2{margin:1.5rem 0 1rem;color:#1a6b4a}
+      .noscript-content p{margin-bottom:1rem}
+      .noscript-content ul{margin:1rem 0;padding-right:1.5rem}
+      .noscript-content li{margin-bottom:0.5rem}
     </style>
   </head>
 
@@ -90,6 +170,34 @@
             </div>
           </div>
         </main>
+        
+        <!-- SEO Content for bots (hidden when JS loads) -->
+        <noscript>
+          <div class="noscript-content">
+            <h2>محول التاريخ الهجري - تحويل التاريخ من هجري لميلادي</h2>
+            <p>مرحباً بك في أداة تحويل التاريخ الهجري، الأداة الأسرع والأدق لتحويل التواريخ بين التقويم الهجري والميلادي.</p>
+            
+            <h2>خدماتنا</h2>
+            <ul>
+              <li><a href="/date/today">تاريخ اليوم هجري وميلادي</a></li>
+              <li><a href="/calendar/1446">التقويم الهجري 1446</a></li>
+              <li><a href="/how-old-am-i/hijri">حاسبة العمر بالهجري</a></li>
+              <li><a href="/how-old-am-i/gregorian">حاسبة العمر بالميلادي</a></li>
+              <li><a href="/convert/hijri-to-gregorian/1446">تحويل من هجري لميلادي</a></li>
+              <li><a href="/convert/gregorian-to-hijri/2024">تحويل من ميلادي لهجري</a></li>
+            </ul>
+            
+            <h2>الأسئلة الشائعة</h2>
+            <h3>كم التاريخ الهجري اليوم؟</h3>
+            <p>يمكنك معرفة تاريخ اليوم الهجري من خلال صفحة تاريخ اليوم التي تعرض التاريخ الهجري والميلادي بشكل لحظي.</p>
+            
+            <h3>كيف أحول التاريخ من ميلادي لهجري؟</h3>
+            <p>أدخل التاريخ الميلادي (اليوم، الشهر، السنة) في محول التاريخ وستحصل على التاريخ الهجري المقابل فوراً.</p>
+            
+            <h3>ما هو التقويم الهجري؟</h3>
+            <p>التقويم الهجري هو تقويم قمري يستخدم في الدول الإسلامية، بدأ من هجرة النبي محمد ﷺ من مكة إلى المدينة.</p>
+          </div>
+        </noscript>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
