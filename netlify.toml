@@ -1,3 +1,24 @@
 [build]
-  command = "bun run build"
-  publish = "dist" # خليه زي ما هو عندك
+  # خليك مع npm لأنه مدعوم رسميًا في Netlify
+  command = "npm run build"
+  # مجلد الإخراج الافتراضي لـ Vite / React
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# مهم جداً لتشغيل كل صفحات React Router على Netlify
+# أي URL → يرجع index.html و React يتولى الباقي
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# هيدرز بسيطة مفيدة للأمان و SEO (اختياري لكن أنصح به)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "public, max-age=0, must-revalidate"
