@@ -1,11 +1,48 @@
 [build]
-  # خليك مع npm لأنه مدعوم رسميًا في Netlify
   command = "npm run build"
-  # مجلد الإخراج الافتراضي لـ Vite / React
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Prerender.io integration for bot crawlers (Google, Bing, etc.)
+# Sign up free at https://prerender.io and add your token
+# [[redirects]]
+#   from = "/*"
+#   to = "https://service.prerender.io/:splat"
+#   status = 200
+#   conditions = {Role = ["bot"]}
+
+# Fallback for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security & SEO headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "all, max-image-preview:large, max-snippet:-1"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # مهم جداً لتشغيل كل صفحات React Router على Netlify
 # أي URL → يرجع index.html و React يتولى الباقي
