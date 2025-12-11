@@ -1,0 +1,6 @@
+[[plugins]]
+package = "@netlify/plugin-prerender"
+
+  [plugins.inputs]
+  crawl = true
+  concurrency = 4
